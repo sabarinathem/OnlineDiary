@@ -7,7 +7,7 @@
     <div class="media-content">
         <div class="content">
             <span>{{diary.date}}</span>
-            <a style="float: right;" href="{% url 'edit' diary.id %}">Edit</a>
+            <span style="float: right;"><a  href="{% url 'delete' diary.id %}">Delete</a></span><span style="float: right;">&nbsp;&nbsp;&nbsp;</span><span style="float: right;"><a  href="{% url 'edit' diary.id %}">Edit</a></span>
         </div>
     </div>
 </article>

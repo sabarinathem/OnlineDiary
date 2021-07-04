@@ -1,10 +1,12 @@
+from django.db.models.fields import DateField, DateTimeField
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from diary.models import Diary
 from diary.form import DiaryForm
+import datetime
 
 def index(request):
-    diary=Diary.objects.order_by('-date')
+    diary=Diary.objects.order_by('-id')
     context={'diary':diary}
     return render(request,'diary/index.html',context)
 def add(request):
@@ -26,12 +28,23 @@ def diary(request,id):
 def edit(request,id):
     if request.method=="POST":
         text=request.POST['diary']
-        diary=Diary()
+        diary=Diary.objects.get(pk=id)
         diary.text=text
+        diary.date=datetime.datetime.now()
+        # d=datetime.datetime.now()
+        # diary.date.Date=d.date()
+        # diary.date.Time=d.strftime("%I:%M:%S")
+
         diary.save()
         return redirect('index')
+  
     diary=Diary.objects.get(pk=id)
    
     context={'diary':diary}
     return render(request,'diary/edit.html',context)
+
+def delete(request,id):
+    diary=Diary.objects.get(pk=id)
+    diary.delete()
+    return redirect('index')
 
