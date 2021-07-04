@@ -1,0 +1,25 @@
+{% extends 'diary/main.html' %}
+
+    
+{% block content %}
+
+<article class="media">
+    <div class="media-content">
+        <div class="content">
+            <span>{{diary.date}}</span>
+        </div>
+    </div>
+</article>
+<article class="media">
+    <div class="media-content">
+        <div class="content">
+            <p>
+              {{diary.text}}
+                
+            </p>
+        </div>
+    </div>
+</article>
+
+
+{% endblock content %}
